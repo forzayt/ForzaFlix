@@ -22,11 +22,19 @@ const Search = () => {
     setInputValue(query);
   }, [query]);
 
+  // Live search effect with debouncing
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (inputValue.trim() !== query) {
+        setSearchParams({ q: inputValue.trim() }, { replace: true });
+      }
+    }, 500); // 500ms debounce
+
+    return () => clearTimeout(timer);
+  }, [inputValue, query, setSearchParams]);
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (inputValue.trim()) {
-      setSearchParams({ q: inputValue.trim() });
-    }
   };
 
   const getMediaType = (item: Movie | TVShow): 'movie' | 'tv' => {
