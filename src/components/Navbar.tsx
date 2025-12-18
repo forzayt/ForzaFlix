@@ -52,25 +52,25 @@ const Navbar = () => {
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={cn(
-                'text-sm font-medium transition-colors hover:text-primary',
-                isActive(link.to) ? 'text-primary' : 'text-foreground/80'
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
+        {/* Desktop Navigation & Search */}
+        <div className="flex items-center gap-4 md:gap-8">
+          <div className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={cn(
+                  'text-sm font-medium transition-colors hover:text-primary whitespace-nowrap',
+                  isActive(link.to) ? 'text-primary' : 'text-foreground/80'
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
 
-        {/* Search & Mobile Menu */}
-        <div className="flex items-center gap-4">
-          {/* Search */}
+          <div className="flex items-center gap-4">
+            {/* Search */}
           <div className="relative">
             {isSearchOpen ? (
               <form onSubmit={handleSearch} className="flex items-center">
@@ -109,8 +109,9 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+    </div>
 
-      {/* Mobile Menu */}
+    {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-t border-border animate-fade-in">
           <div className="flex flex-col p-4 gap-4">
