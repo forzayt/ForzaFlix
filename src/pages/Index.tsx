@@ -26,13 +26,7 @@ const Index = () => {
     queryFn: () => getPopularTVShows(),
   });
 
-  const heroItem = trending?.results[0];
-  const heroType = heroItem?.media_type === 'tv' ? 'tv' : 'movie';
-
-  const getMediaType = (item: Movie | TVShow) => {
-    if ('title' in item) return 'movie';
-    return 'tv';
-  };
+  const heroItems = trending?.results?.slice(0, 5) || [];
 
   return (
     <div className="min-h-screen bg-background">
@@ -41,14 +35,12 @@ const Index = () => {
       {/* Hero Section */}
       {trendingLoading ? (
         <div className="h-[85vh] bg-secondary animate-pulse" />
-      ) : heroItem ? (
-        <HeroSection item={heroItem} type={heroType} />
+      ) : heroItems.length > 0 ? (
+        <HeroSection items={heroItems} />
       ) : null}
 
       {/* Content Rows */}
       <div className="relative z-10 -mt-32 pb-20">
-        
-
         {/* Popular Movies */}
         {popularMovies?.results && (
           <MovieRow
@@ -75,6 +67,8 @@ const Index = () => {
             type="tv"
           />
         )}
+
+      
       </div>
     </div>
   );
