@@ -44,8 +44,8 @@ const Search = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <main className="pt-24 pb-20 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto">
+      <main className="pt-24 pb-20 px-4 md:px-12">
+        <div>
           {/* Search Input */}
           <form onSubmit={handleSearch} className="mb-12">
             <div className="relative max-w-2xl mx-auto">

@@ -44,7 +44,7 @@ const MovieDetails = () => {
         <Navbar />
         <div className="pt-20">
           <Skeleton className="h-[60vh] w-full" />
-          <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 space-y-4">
+          <div className="px-4 md:px-12 py-8 space-y-4">
             <Skeleton className="h-10 w-1/2" />
             <Skeleton className="h-6 w-1/4" />
             <Skeleton className="h-24 w-full" />
@@ -87,7 +87,7 @@ const MovieDetails = () => {
 
       {/* Content */}
       <div className="relative -mt-64 z-10">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <div className="px-4 md:px-12">
           <div className="flex flex-col md:flex-row gap-8">
             {/* Poster */}
             <div className="flex-shrink-0 w-[200px] md:w-[300px] mx-auto md:mx-0">
@@ -152,17 +152,17 @@ const MovieDetails = () => {
 
           {/* Cast */}
           {credits?.cast && <CastSection cast={credits.cast} />}
-
-          {/* Similar Movies */}
-          {similar?.results && similar.results.length > 0 && (
-            <MovieRow
-              title="Similar Movies"
-              items={similar.results}
-              type="movie"
-              className="mt-8"
-            />
-          )}
         </div>
+
+        {/* Similar Movies */}
+        {similar?.results && similar.results.length > 0 && (
+          <MovieRow
+            title="Similar Movies"
+            items={similar.results}
+            type="movie"
+            className="mt-8"
+          />
+        )}
       </div>
 
       <div className="pb-20" />

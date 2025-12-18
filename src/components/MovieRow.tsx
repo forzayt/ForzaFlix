@@ -28,7 +28,7 @@ const MovieRow = ({ title, items, type, className }: MovieRowProps) => {
 
   return (
     <section className={cn('relative py-6', className)}>
-      <h2 className="text-xl md:text-2xl font-bold mb-4 px-4 md:px-8">{title}</h2>
+      <h2 className="text-xl md:text-2xl font-bold mb-4 px-4 md:px-12">{title}</h2>
 
       <div className="group/row relative">
         {/* Left Arrow */}
@@ -42,7 +42,7 @@ const MovieRow = ({ title, items, type, className }: MovieRowProps) => {
         {/* Scrollable Container */}
         <div
           ref={scrollRef}
-          className="flex gap-4 overflow-x-auto scrollbar-hide px-4 md:px-8 py-4 -my-4"
+          className="flex gap-4 overflow-x-auto scrollbar-hide px-4 md:px-12 py-4 -my-4"
         >
           {items.map((item) => (
             <MovieCard 
