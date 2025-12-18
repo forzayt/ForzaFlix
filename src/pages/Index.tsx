@@ -47,14 +47,7 @@ const Index = () => {
 
       {/* Content Rows */}
       <div className="relative z-10 -mt-32 pb-20">
-        {/* Trending Now */}
-        {trending?.results && (
-          <MovieRow
-            title="🔥 Trending Now"
-            items={trending.results.slice(1, 20)}
-            type="movie"
-          />
-        )}
+        
 
         {/* Popular Movies */}
         {popularMovies?.results && (
