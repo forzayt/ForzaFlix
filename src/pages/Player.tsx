@@ -72,7 +72,7 @@ const Player = () => {
             variant="ghost" 
             size="icon" 
             onClick={() => navigate(-1)}
-            className="rounded-full hover:bg-secondary"
+            className="rounded-full hover:bg-secondary focus:bg-secondary focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <ChevronLeft size={24} />
           </Button>
@@ -91,7 +91,7 @@ const Player = () => {
           {!isMovie && tvItem && (
             <div className="hidden md:flex items-center gap-2">
               <Select value={String(season)} onValueChange={handleSeasonChange}>
-                <SelectTrigger className="w-[120px] bg-secondary/50 border-none">
+                <SelectTrigger className="w-[120px] bg-secondary/50 border-none focus:ring-2 focus:ring-primary">
                   <SelectValue placeholder="Season" />
                 </SelectTrigger>
                 <SelectContent>
@@ -104,7 +104,7 @@ const Player = () => {
               </Select>
 
               <Select value={String(episode)} onValueChange={handleEpisodeChange}>
-                <SelectTrigger className="w-[120px] bg-secondary/50 border-none">
+                <SelectTrigger className="w-[120px] bg-secondary/50 border-none focus:ring-2 focus:ring-primary">
                   <SelectValue placeholder="Episode" />
                 </SelectTrigger>
                 <SelectContent>
@@ -120,7 +120,7 @@ const Player = () => {
             </div>
           )}
           <Link to="/">
-            <Button variant="ghost" size="icon" className="rounded-full hover:bg-secondary">
+            <Button variant="ghost" size="icon" className="rounded-full hover:bg-secondary focus:bg-secondary focus:outline-none focus:ring-2 focus:ring-primary">
               <Home size={24} />
             </Button>
           </Link>

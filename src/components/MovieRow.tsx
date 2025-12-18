@@ -34,7 +34,7 @@ const MovieRow = ({ title, items, type, className }: MovieRowProps) => {
         {/* Left Arrow */}
         <button
           onClick={() => scroll('left')}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-background/80 backdrop-blur-sm p-2 rounded-full opacity-0 group-hover/row:opacity-100 transition-opacity hover:bg-background ml-2"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-background/80 backdrop-blur-sm p-2 rounded-full opacity-0 group-hover/row:opacity-100 focus:opacity-100 transition-opacity hover:bg-background focus:bg-background ml-2 outline-none focus:ring-2 focus:ring-primary"
         >
           <ChevronLeft size={24} />
         </button>
@@ -42,14 +42,14 @@ const MovieRow = ({ title, items, type, className }: MovieRowProps) => {
         {/* Scrollable Container */}
         <div
           ref={scrollRef}
-          className="flex gap-4 overflow-x-auto scrollbar-hide px-4 md:px-12 py-4 -my-4"
+          className="flex gap-4 overflow-x-auto scrollbar-hide px-4 md:px-12 py-4 -my-4 focus:outline-none"
         >
           {items.map((item) => (
             <MovieCard 
               key={item.id} 
               item={item} 
               type={type} 
-              className="group-hover/row:opacity-50 hover:!opacity-100 transition-opacity duration-300"
+              className="group-hover/row:opacity-50 hover:!opacity-100 focus:!opacity-100 transition-opacity duration-300"
             />
           ))}
         </div>
@@ -57,7 +57,7 @@ const MovieRow = ({ title, items, type, className }: MovieRowProps) => {
         {/* Right Arrow */}
         <button
           onClick={() => scroll('right')}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-background/80 backdrop-blur-sm p-2 rounded-full opacity-0 group-hover/row:opacity-100 transition-opacity hover:bg-background mr-2"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-background/80 backdrop-blur-sm p-2 rounded-full opacity-0 group-hover/row:opacity-100 focus:opacity-100 transition-opacity hover:bg-background focus:bg-background mr-2 outline-none focus:ring-2 focus:ring-primary"
         >
           <ChevronRight size={24} />
         </button>

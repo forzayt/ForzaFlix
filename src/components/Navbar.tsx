@@ -60,7 +60,7 @@ const Navbar = () => {
                 key={link.to}
                 to={link.to}
                 className={cn(
-                  'text-sm font-medium transition-colors hover:text-primary whitespace-nowrap',
+                  'text-sm font-medium transition-colors hover:text-primary focus:text-primary focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-md px-2 py-1 whitespace-nowrap',
                   isActive(link.to) ? 'text-primary' : 'text-foreground/80'
                 )}
               >
@@ -93,7 +93,7 @@ const Navbar = () => {
             ) : (
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 hover:bg-secondary/50 rounded-full transition-colors"
+                className="p-2 hover:bg-secondary/50 focus:bg-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary rounded-full transition-colors"
               >
                 <Search size={20} />
               </button>

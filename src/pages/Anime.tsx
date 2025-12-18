@@ -49,7 +49,7 @@ const Anime = () => {
             <button
               onClick={() => handleTabChange('tv')}
               className={cn(
-                'px-6 py-3 rounded-full text-sm font-semibold transition-colors',
+                'px-6 py-3 rounded-full text-sm font-semibold transition-colors focus:outline-none focus:ring-4 focus:ring-primary/50',
                 tab === 'tv'
                   ? 'bg-primary text-primary-foreground'
                   : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
@@ -60,7 +60,7 @@ const Anime = () => {
             <button
               onClick={() => handleTabChange('movies')}
               className={cn(
-                'px-6 py-3 rounded-full text-sm font-semibold transition-colors',
+                'px-6 py-3 rounded-full text-sm font-semibold transition-colors focus:outline-none focus:ring-4 focus:ring-primary/50',
                 tab === 'movies'
                   ? 'bg-primary text-primary-foreground'
                   : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'

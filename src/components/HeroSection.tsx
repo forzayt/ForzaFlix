@@ -54,13 +54,13 @@ const HeroSection = ({ item, type }: HeroSectionProps) => {
 
             {/* Action Buttons */}
             <div className="flex items-center gap-4 pt-2">
-              <Button asChild size="lg" className="gap-2">
+              <Button asChild size="lg" className="gap-2 focus:ring-4 focus:ring-primary/50">
                 <Link to={`/watch/${type}/${item.id}`}>
                   <Play size={20} fill="currentColor" />
                   Watch Now
                 </Link>
               </Button>
-              <Button asChild variant="secondary" size="lg" className="gap-2">
+              <Button asChild variant="secondary" size="lg" className="gap-2 focus:ring-4 focus:ring-secondary/50">
                 <Link to={`/${type}/${item.id}`}>
                   <Info size={20} />
                   More Info

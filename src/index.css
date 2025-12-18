@@ -55,6 +55,21 @@
     font-family: 'Inter', sans-serif;
   }
 
+  /* TV Optimized Focus Styles */
+  :focus {
+    outline: none !important;
+  }
+
+  :focus-visible {
+    @apply ring-4 ring-primary ring-offset-4 ring-offset-background;
+  }
+
+  /* Ensure focused items are always above others */
+  *:focus {
+    z-index: 50 !important;
+    position: relative;
+  }
+
   h1, h2, h3 {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
