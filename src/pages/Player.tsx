@@ -51,7 +51,7 @@ const Player = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="w-full max-w-[1600px] px-4 space-y-4">
+        <div className="w-full max-w-6xl px-4 space-y-4">
           <Skeleton className="aspect-video w-full rounded-xl" />
           <Skeleton className="h-8 w-1/3" />
         </div>
@@ -146,7 +146,7 @@ const Player = () => {
 
       {/* Player Container */}
       <main className="px-4 md:px-12 py-6">
-        <div className="max-w-[1600px] mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="relative group">
             <StreamPlayer 
               id={itemId} 

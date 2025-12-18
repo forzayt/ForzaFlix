@@ -71,43 +71,44 @@ const Index = () => {
             </h2>
             <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar scroll-smooth">
               {continueWatching.map((item) => (
-                <Link
-                  key={`${item.type}-${item.id}`}
-                  to={`/watch/${item.type}/${item.id}${item.type !== 'movie' ? `?s=${item.season}&e=${item.episode}` : ''}`}
-                  className="group relative flex-shrink-0 w-[280px] md:w-[350px] aspect-video rounded-xl overflow-hidden bg-secondary transition-all hover:scale-105 hover:z-10 focus:outline-none focus:ring-2 focus:ring-primary"
-                >
-                  <img
-                    src={getImageUrl(item.backdrop_path || item.poster_path, 'w500')}
-                    alt={item.title}
-                    className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                  
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <h3 className="text-sm md:text-base font-bold line-clamp-1 group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-                    {item.type !== 'movie' && (
-                      <p className="text-xs text-muted-foreground mt-1">
-                        Season {item.season} • Episode {item.episode}
-                      </p>
-                    )}
-                  </div>
+                <div key={`${item.type}-${item.id}`} className="group relative flex-shrink-0">
+                  <Link
+                    to={`/watch/${item.type}/${item.id}${item.type !== 'movie' ? `?s=${item.season}&e=${item.episode}` : ''}`}
+                    className="block w-[280px] md:w-[350px] aspect-video rounded-xl overflow-hidden bg-secondary transition-all hover:scale-105 hover:z-10 focus:outline-none focus:ring-2 focus:ring-primary"
+                  >
+                    <img
+                      src={getImageUrl(item.backdrop_path || item.poster_path, 'w500')}
+                      alt={item.title}
+                      className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                    
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <h3 className="text-sm md:text-base font-bold line-clamp-1 group-hover:text-primary transition-colors">
+                        {item.title}
+                      </h3>
+                      {item.type !== 'movie' && (
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Season {item.season} • Episode {item.episode}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="bg-primary/90 rounded-full p-4 transform scale-75 group-hover:scale-100 transition-transform">
+                        <Play size={24} fill="currentColor" className="ml-1 text-primary-foreground" />
+                      </div>
+                    </div>
+                  </Link>
 
                   <button
                     onClick={(e) => handleRemove(e, item.id, item.type)}
-                    className="absolute top-2 right-2 p-1.5 bg-black/60 hover:bg-primary backdrop-blur-md rounded-full text-white opacity-0 group-hover:opacity-100 transition-all z-20"
+                    className="absolute top-2 right-2 p-1.5 bg-black/60 hover:bg-destructive backdrop-blur-md rounded-full text-white opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 focus:opacity-100 focus:bg-destructive focus:outline-none focus:ring-2 focus:ring-white transition-all z-20"
                     title="Remove from history"
                   >
                     <X size={14} />
                   </button>
-
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="bg-primary/90 rounded-full p-4 transform scale-75 group-hover:scale-100 transition-transform">
-                      <Play size={24} fill="currentColor" className="ml-1 text-primary-foreground" />
-                    </div>
-                  </div>
-                </Link>
+                </div>
               ))}
             </div>
           </div>
