@@ -46,7 +46,7 @@ const Navbar = () => {
     >
       <div className="flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary rounded-md px-2 py-1 transition-all">
           <span className="text-2xl md:text-3xl font-bold text-primary tracking-tight">
             ForzaFlix
           </span>

@@ -13,7 +13,7 @@ const GenreFilter = ({ genres, selectedGenre, onSelectGenre }: GenreFilterProps)
       <button
         onClick={() => onSelectGenre(null)}
         className={cn(
-          'px-4 py-2 rounded-full text-sm font-medium transition-colors',
+          'px-4 py-2 rounded-full text-sm font-medium transition-colors focus:outline-none focus:ring-4 focus:ring-primary/50',
           !selectedGenre
             ? 'bg-primary text-primary-foreground'
             : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
@@ -26,7 +26,7 @@ const GenreFilter = ({ genres, selectedGenre, onSelectGenre }: GenreFilterProps)
           key={genre.id}
           onClick={() => onSelectGenre(String(genre.id))}
           className={cn(
-            'px-4 py-2 rounded-full text-sm font-medium transition-colors',
+            'px-4 py-2 rounded-full text-sm font-medium transition-colors focus:outline-none focus:ring-4 focus:ring-primary/50',
             selectedGenre === String(genre.id)
               ? 'bg-primary text-primary-foreground'
               : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'

@@ -12,7 +12,7 @@ export const useTVNavigation = () => {
       
       // If nothing is focused, focus the first focusable element
       if (!currentFocus || currentFocus === document.body) {
-        const firstFocusable = document.querySelector('a, button, [tabindex="0"]') as HTMLElement;
+        const firstFocusable = document.querySelector('a, button, input, select, [tabindex="0"]') as HTMLElement;
         if (firstFocusable) {
           firstFocusable.focus();
           e.preventDefault();
@@ -28,7 +28,7 @@ export const useTVNavigation = () => {
       e.preventDefault();
 
       const focusableElements = Array.from(
-        document.querySelectorAll('a, button, [tabindex="0"]')
+        document.querySelectorAll('a, button, input, select, [tabindex="0"]')
       ).filter((el) => {
         const rect = el.getBoundingClientRect();
         return rect.width > 0 && rect.height > 0;
@@ -56,26 +56,33 @@ export const useTVNavigation = () => {
         const dy = center.y - currentCenter.y;
 
         let isCorrectDirection = false;
-        let distance = 0;
-
-        // Spatial navigation logic: prioritize elements in the direction, then distance
+        
+        // Loosen the direction check to allow for horizontal/vertical offsets
+        // and use a more robust distance scoring system
         if (key === 'ArrowRight' && dx > 0) {
-          isCorrectDirection = Math.abs(dy) < Math.abs(dx);
-          distance = Math.sqrt(dx * dx + dy * dy * 2); // Penalize vertical deviation
+          isCorrectDirection = dx > Math.abs(dy) * 0.5;
         } else if (key === 'ArrowLeft' && dx < 0) {
-          isCorrectDirection = Math.abs(dy) < Math.abs(dx);
-          distance = Math.sqrt(dx * dx + dy * dy * 2);
+          isCorrectDirection = Math.abs(dx) > Math.abs(dy) * 0.5;
         } else if (key === 'ArrowDown' && dy > 0) {
-          isCorrectDirection = Math.abs(dx) < Math.abs(dy);
-          distance = Math.sqrt(dy * dy + dx * dx * 2); // Penalize horizontal deviation
+          isCorrectDirection = dy > Math.abs(dx) * 0.3; // Be even more forgiving for vertical movement
         } else if (key === 'ArrowUp' && dy < 0) {
-          isCorrectDirection = Math.abs(dx) < Math.abs(dy);
-          distance = Math.sqrt(dy * dy + dx * dx * 2);
+          isCorrectDirection = Math.abs(dy) > Math.abs(dx) * 0.3; // Help reach the navbar even if offset
         }
 
-        if (isCorrectDirection && distance < minDistance) {
-          minDistance = distance;
-          bestElement = el;
+        if (isCorrectDirection) {
+          // Calculate distance with a heavy penalty for the non-primary axis
+          // This ensures we prefer items directly in line, but can still move diagonally
+          let distance = 0;
+          if (key === 'ArrowLeft' || key === 'ArrowRight') {
+            distance = Math.sqrt(dx * dx + (dy * dy * 4));
+          } else {
+            distance = Math.sqrt((dx * dx * 2) + dy * dy);
+          }
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            bestElement = el;
+          }
         }
       });
 
