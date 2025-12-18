@@ -10,6 +10,7 @@ import Anime from "./pages/Anime";
 import Search from "./pages/Search";
 import MovieDetails from "./pages/MovieDetails";
 import TVDetails from "./pages/TVDetails";
+import Player from "./pages/Player";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/search" element={<Search />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
           <Route path="/tv/:id" element={<TVDetails />} />
+          <Route path="/watch/:type/:id" element={<Player />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

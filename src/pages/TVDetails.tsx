@@ -1,17 +1,17 @@
-import { useParams } from 'react-router-dom';
+import { Star, Calendar, Tv, Play } from 'lucide-react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getTVShowDetails, getTVShowVideos, getTVShowCredits, getSimilarTVShows, getBackdropUrl, getImageUrl } from '@/services/tmdb';
 import Navbar from '@/components/Navbar';
 import VideoPlayer from '@/components/VideoPlayer';
-import StreamPlayer from '@/components/StreamPlayer';
 import CastSection from '@/components/CastSection';
 import MovieRow from '@/components/MovieRow';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
-import { Star, Calendar, Tv, Play } from 'lucide-react';
 
 const TVDetails = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const tvId = Number(id);
 
   const { data: show, isLoading } = useQuery({
@@ -151,26 +151,13 @@ const TVDetails = () => {
                 <Button 
                   size="lg" 
                   className="gap-2"
-                  onClick={() => document.getElementById('stream-player')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => navigate(`/watch/tv/${show.id}`)}
                 >
                   <Play size={20} fill="currentColor" />
                   Watch Now
                 </Button>
               </div>
             </div>
-          </div>
-
-          {/* Stream Player */}
-          <div id="stream-player" className="mt-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <Play size={24} className="text-primary fill-primary" />
-              Watch Now
-            </h2>
-            <StreamPlayer 
-              id={show.id} 
-              type="tv" 
-              title={show.name} 
-            />
           </div>
 
           {/* Trailer */}

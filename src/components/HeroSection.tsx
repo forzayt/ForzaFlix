@@ -55,7 +55,7 @@ const HeroSection = ({ item, type }: HeroSectionProps) => {
             {/* Action Buttons */}
             <div className="flex items-center gap-4 pt-2">
               <Button asChild size="lg" className="gap-2">
-                <Link to={`/${type}/${item.id}#stream-player`}>
+                <Link to={`/watch/${type}/${item.id}`}>
                   <Play size={20} fill="currentColor" />
                   Watch Now
                 </Link>
