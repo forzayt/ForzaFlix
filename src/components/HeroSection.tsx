@@ -30,8 +30,8 @@ const HeroSection = ({ item, type }: HeroSectionProps) => {
 
       {/* Content */}
       <div className="absolute inset-0 flex items-end pb-24 md:pb-32">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 w-full">
-          <div className="max-w-2xl space-y-4 animate-fade-in">
+        <div className="px-4 md:px-12 w-full">
+          <div className="max-w-2xl space-y-4 animate-fade-in text-left">
             {/* Title */}
             <h1 className="text-4xl md:text-6xl font-bold text-shadow">{title}</h1>
 
