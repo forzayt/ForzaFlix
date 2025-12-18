@@ -199,3 +199,11 @@ export const getMovieGenres = () =>
 
 export const getTVGenres = () =>
   fetchTMDB<{ genres: Genre[] }>('/genre/tv/list');
+
+export const getIndianMovies = (page = 1) =>
+  fetchTMDB<PaginatedResponse<Movie>>('/discover/movie', {
+    page: String(page),
+    with_original_language: 'hi|te|ta|kn|ml',
+    region: 'IN',
+    sort_by: 'popularity.desc',
+  });

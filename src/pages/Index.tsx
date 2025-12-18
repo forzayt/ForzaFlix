@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getTrending, getPopularMovies, getTopRatedMovies, getPopularTVShows, Movie, TVShow } from '@/services/tmdb';
+import { getTrending, getPopularMovies, getTopRatedMovies, getPopularTVShows, getIndianMovies, Movie, TVShow } from '@/services/tmdb';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import MovieRow from '@/components/MovieRow';
@@ -24,6 +24,11 @@ const Index = () => {
   const { data: popularTVShows } = useQuery({
     queryKey: ['popularTVShows'],
     queryFn: () => getPopularTVShows(),
+  });
+
+  const { data: indianMovies } = useQuery({
+    queryKey: ['indianMovies'],
+    queryFn: () => getIndianMovies(),
   });
 
   const heroItems = trending?.results?.slice(0, 5) || [];
@@ -68,7 +73,14 @@ const Index = () => {
           />
         )}
 
-      
+        {/* Indian Popular */}
+        {indianMovies?.results && (
+          <MovieRow
+            title="Popular on India"
+            items={indianMovies.results}
+            type="movie"
+          />
+        )}
       </div>
     </div>
   );
