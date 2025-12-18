@@ -1,11 +1,13 @@
 import { useParams, useSearchParams, Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { ChevronLeft, Home, ChevronRight } from 'lucide-react';
+import { useEffect } from 'react';
 import { getMovieDetails, getTVShowDetails, MovieDetails, TVShowDetails } from '@/services/tmdb';
 import StreamPlayer from '@/components/StreamPlayer';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { saveToContinueWatching } from '@/lib/continueWatching';
 
 const Player = () => {
   const { type, id } = useParams<{ type: string; id: string }>();
@@ -31,10 +33,25 @@ const Player = () => {
   const movieItem = isMovie ? item as MovieDetails : null;
   const tvItem = !isMovie ? item as TVShowDetails : null;
 
+  useEffect(() => {
+    if (item) {
+      saveToContinueWatching({
+        id: itemId,
+        type: type as 'movie' | 'tv' | 'anime',
+        title: movieItem ? movieItem.title : tvItem?.name || '',
+        poster_path: item.poster_path,
+        backdrop_path: item.backdrop_path,
+        season: isMovie ? undefined : season,
+        episode: isMovie ? undefined : episode,
+        timestamp: Date.now(),
+      });
+    }
+  }, [item, itemId, type, season, episode, isMovie, movieItem, tvItem]);
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="w-full max-w-4xl px-4 space-y-4">
+        <div className="w-full max-w-[1600px] px-4 space-y-4">
           <Skeleton className="aspect-video w-full rounded-xl" />
           <Skeleton className="h-8 w-1/3" />
         </div>
@@ -129,7 +146,7 @@ const Player = () => {
 
       {/* Player Container */}
       <main className="px-4 md:px-12 py-6">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="relative group">
             <StreamPlayer 
               id={itemId} 
