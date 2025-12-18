@@ -3,10 +3,12 @@ import { useQuery } from '@tanstack/react-query';
 import { getMovieDetails, getMovieVideos, getMovieCredits, getSimilarMovies, getBackdropUrl, getImageUrl } from '@/services/tmdb';
 import Navbar from '@/components/Navbar';
 import VideoPlayer from '@/components/VideoPlayer';
+import StreamPlayer from '@/components/StreamPlayer';
 import CastSection from '@/components/CastSection';
 import MovieRow from '@/components/MovieRow';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Star, Clock, Calendar } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Star, Clock, Calendar, Play } from 'lucide-react';
 
 const MovieDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -141,7 +143,32 @@ const MovieDetails = () => {
                 <h3 className="text-lg font-semibold mb-2">Overview</h3>
                 <p className="text-foreground/80 leading-relaxed">{movie.overview}</p>
               </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-4 pt-4">
+                <Button 
+                  size="lg" 
+                  className="gap-2"
+                  onClick={() => document.getElementById('stream-player')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  <Play size={20} fill="currentColor" />
+                  Watch Now
+                </Button>
+              </div>
             </div>
+          </div>
+
+          {/* Stream Player */}
+          <div id="stream-player" className="mt-12 scroll-mt-24">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <Play size={24} className="text-primary fill-primary" />
+              Watch Now
+            </h2>
+            <StreamPlayer 
+              id={movie.id} 
+              type="movie" 
+              title={movie.title} 
+            />
           </div>
 
           {/* Trailer */}
